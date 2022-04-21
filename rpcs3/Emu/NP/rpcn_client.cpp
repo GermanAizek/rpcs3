@@ -1399,7 +1399,7 @@ namespace rpcn
 
 	bool rpcn_client::get_roomdata_internal(u32 req_id, const SceNpCommunicationId& communication_id, const SceNpMatching2GetRoomDataInternalRequest* req)
 	{
-		std::vector<u8> data, reply_data;
+		std::vector<u8> data;
 
 		flatbuffers::FlatBufferBuilder builder(1024);
 

@@ -1036,9 +1036,7 @@ struct AdecTask
 	{
 	}
 
-	AdecTask()
-	{
-	}
+	AdecTask() = default;
 };
 
 struct AdecFrame

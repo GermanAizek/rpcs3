@@ -1,9 +1,7 @@
 #include "stdafx.h"
 #include "Utilities/rXml.h"
 
-rXmlNode::rXmlNode()
-{
-}
+rXmlNode::rXmlNode() = default;
 
 rXmlNode::rXmlNode(const pugi::xml_node &node)
 {
@@ -55,9 +53,7 @@ std::string rXmlNode::GetNodeContent()
 	return handle.text().get();
 }
 
-rXmlDocument::rXmlDocument()
-{
-}
+rXmlDocument::rXmlDocument() = default;
 
 pugi::xml_parse_result rXmlDocument::Read(const std::string& data)
 {

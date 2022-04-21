@@ -336,7 +336,6 @@ public:
 
 				std::string param_type = GetCgParamType(fparam.type) + " ";
 				std::string param_name = GetCgParamName(fparam.name) + " ";
-				std::string param_res = GetCgParamRes(fparam.res) + " ";
 				std::string param_semantic = GetCgParamSemantic(fparam.semantic) + " ";
 				std::string param_const = GetCgParamValue(fparam.embeddedConst, fparam.name);
 
@@ -390,7 +389,6 @@ public:
 
 				std::string param_type = GetCgParamType(vparam.type) + " ";
 				std::string param_name = GetCgParamName(vparam.name) + " ";
-				std::string param_res = GetCgParamRes(vparam.res) + " ";
 				std::string param_semantic = GetCgParamSemantic(vparam.semantic) + " ";
 				std::string param_const = GetCgParamValue(vparam.embeddedConst, vparam.name);
 

@@ -16,7 +16,7 @@ private:
 
 public:
 
-	simple_ringbuf() {};
+	simple_ringbuf() = default;
 	simple_ringbuf(u32 size);
 
 	simple_ringbuf(const simple_ringbuf&) = delete;

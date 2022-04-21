@@ -762,7 +762,6 @@ std::optional<s32> lv2_socket_p2ps::sendto([[maybe_unused]] s32 flags, const std
 	tcp_header.src_port = vport;
 	tcp_header.dst_port = op_vport;
 	// chop it up
-	std::vector<std::vector<u8>> stream_packets;
 	u32 cur_total_len = buf.size();
 	while (cur_total_len > 0)
 	{

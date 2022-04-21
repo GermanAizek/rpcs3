@@ -46,7 +46,7 @@ public:
 
 	perf_stat_base& operator =(const perf_stat_base&) = delete;
 
-	~perf_stat_base() {}
+	~perf_stat_base() = default;
 
 	// Collect all data, report it, and clean
 	static void report() noexcept;

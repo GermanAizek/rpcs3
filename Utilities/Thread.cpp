@@ -2703,7 +2703,6 @@ u64 thread_ctrl::get_affinity_mask(thread_class group)
 			u64 spu_mask, ppu_mask, rsx_mask;
 			spu_mask = ppu_mask = rsx_mask = all_cores_mask; // Fallback, in case someone is messing with core config
 
-			const auto system_id = utils::get_cpu_brand();
 			const auto family_id = utils::get_cpu_family();
 			const auto model_id = utils::get_cpu_model();
 

@@ -138,9 +138,7 @@ struct DemuxerTask
 		} es;
 	};
 
-	DemuxerTask()
-	{
-	}
+	DemuxerTask() = default;
 
 	DemuxerTask(DemuxerJobType type)
 		: type(type)

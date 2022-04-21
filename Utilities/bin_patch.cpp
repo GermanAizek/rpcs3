@@ -65,9 +65,7 @@ void fmt_class_string<patch_type>::format(std::string& out, u64 arg)
 	});
 }
 
-patch_engine::patch_engine()
-{
-}
+patch_engine::patch_engine() = default;
 
 std::string patch_engine::get_patch_config_path()
 {
@@ -778,7 +776,7 @@ static usz apply_modification(std::basic_string<u32>& applied, const patch_engin
 			// Must contain only a single ':' or none
 			// If ':' is found: Left string is the module name, right string is the function name
 			// If ':' is not found: The entire string is a direct address of the function's descriptor in hexadecimal
-			if (str.size() <= 2 || !sep_pos || sep_pos == str.size() - 1 || sep_pos != str.find_last_of(":"))
+			if (str.size() <= 2 || !sep_pos || sep_pos == str.size() - 1 || sep_pos != str.find_last_of(':'))
 			{
 				continue;
 			}
