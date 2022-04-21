@@ -52,7 +52,7 @@ public:
 		return std::chrono::duration_cast<std::chrono::nanoseconds>(now - m_start).count();
 	}
 
-	u64 GetMsSince(steady_clock::time_point timestamp) const
+	u64 GetMsSince(const steady_clock::time_point& timestamp) const
 	{
 		const steady_clock::time_point now = m_stopped ? m_end : steady_clock::now();
 

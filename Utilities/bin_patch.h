@@ -127,7 +127,7 @@ public:
 	static patch_type get_patch_type(const std::string& text);
 
 	// Get the patch type of a patch node
-	static patch_type get_patch_type(YAML::Node node);
+	static patch_type get_patch_type(const YAML::Node& node);
 
 	// Add the data of a patch node
 	static bool add_patch_data(YAML::Node node, patch_info& info, u32 modifier, const YAML::Node& root, std::stringstream* log_messages = nullptr);

@@ -394,7 +394,7 @@ patch_type patch_engine::get_patch_type(const std::string& text)
 	return static_cast<patch_type>(type_val);
 }
 
-patch_type patch_engine::get_patch_type(YAML::Node node)
+patch_type patch_engine::get_patch_type(const YAML::Node& node)
 {
 	if (!node || !node.IsScalar())
 	{

@@ -902,7 +902,7 @@ error_code sceNpBasicSendMessageGui(vm::cptr<SceNpBasicMessageDetails> msg, sys_
 
 	for (u32 i = 0; i < msg->count; i++)
 	{
-		npids.insert(std::string(msg->npids[i].handle.data));
+		npids.emplace(msg->npids[i].handle.data);
 	}
 
 	if (msg->subject)

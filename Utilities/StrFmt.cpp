@@ -484,7 +484,7 @@ std::string fmt::replace_all(std::string_view src, std::string_view from, std::s
 	return target;
 }
 
-std::vector<std::string> fmt::split(std::string_view source, std::initializer_list<std::string_view> separators, bool is_skip_empty)
+std::vector<std::string> fmt::split(std::string_view source, const std::initializer_list<std::string_view>& separators, bool is_skip_empty)
 {
 	std::vector<std::string> result;
 

@@ -3,9 +3,9 @@
 
 rXmlNode::rXmlNode() = default;
 
-rXmlNode::rXmlNode(const pugi::xml_node &node)
+rXmlNode::rXmlNode(const pugi::xml_node& node)
+	: handle(node)
 {
-	handle = node;
 }
 
 std::shared_ptr<rXmlNode> rXmlNode::GetChildren()
