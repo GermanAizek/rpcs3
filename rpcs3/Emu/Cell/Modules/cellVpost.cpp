@@ -271,7 +271,7 @@ error_code cellVpostExec(u32 handle, vm::cptr<u8> inPicBuff, vm::cptr<CellVpostC
 	picInfo->reserved2 = 0;
 
 	//u64 stamp0 = get_guest_system_time();
-	std::unique_ptr<u8[]> pA(new u8[w*h]);
+	auto pA = std::make_unique<u8[]>(w * h);
 
 	memset(pA.get(), ctrlParam->outAlpha, w*h);
 

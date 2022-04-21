@@ -2343,7 +2343,7 @@ public:
 					std::string error_msg;
 					if (length)
 					{
-						std::unique_ptr<GLchar[]> buf(new char[length + 1]);
+						auto buf = std::make_unique<GLchar[]>(length + 1);
 						glGetShaderInfoLog(m_id, length, nullptr, buf.get());
 						error_msg = buf.get();
 					}
@@ -2601,7 +2601,7 @@ public:
 					std::string error_msg;
 					if (length)
 					{
-						std::unique_ptr<GLchar[]> buf(new char[length + 1]);
+						auto buf = std::make_unique<GLchar[]>(length + 1);
 						glGetProgramInfoLog(m_id, length, nullptr, buf.get());
 						error_msg = buf.get();
 					}
@@ -2635,7 +2635,7 @@ public:
 					std::string error_msg;
 					if (length)
 					{
-						std::unique_ptr<GLchar[]> buf(new char[length + 1]);
+						auto buf = std::make_unique<GLchar[]>(length + 1);
 						glGetProgramInfoLog(m_id, length, nullptr, buf.get());
 						error_msg = buf.get();
 					}

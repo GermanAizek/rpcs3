@@ -137,15 +137,20 @@ struct gl_render_target_traits
 		auto format = rsx::internals::surface_color_format_to_gl(surface_color_format);
 		const auto [width_, height_] = rsx::apply_resolution_scale<true>(static_cast<u16>(width), static_cast<u16>(height));
 
-		std::unique_ptr<gl::render_target> result(new gl::render_target(width_, height_,
-			static_cast<GLenum>(format.internal_format), RSX_FORMAT_CLASS_COLOR));
+		auto result = std::make_unique<gl::render_target>(width_, height_,
+			static_cast<GLenum>(format.internal_format), RSX_FORMAT_CLASS_COLOR);
 
 		result->set_aa_mode(antialias);
 		result->set_native_pitch(static_cast<u32>(width) * get_format_block_size_in_bytes(surface_color_format) * result->samples_x);
 		result->set_surface_dimensions(static_cast<u16>(width), static_cast<u16>(height), static_cast<u32>(pitch));
 		result->set_format(surface_color_format);
 
-		std::array<GLenum, 4> native_layout = { static_cast<GLenum>(format.swizzle.a), static_cast<GLenum>(format.swizzle.r), static_cast<GLenum>(format.swizzle.g), static_cast<GLenum>(format.swizzle.b) };
+		std::array<GLenum, 4> native_layout = {
+			static_cast<GLenum>(format.swizzle.a),
+			static_cast<GLenum>(format.swizzle.r),
+			static_cast<GLenum>(format.swizzle.g),
+			static_cast<GLenum>(format.swizzle.b)
+		};
 		result->set_native_component_layout(native_layout);
 
 		result->memory_usage_flags = rsx::surface_usage_flags::attachment;
@@ -166,8 +171,8 @@ struct gl_render_target_traits
 		auto format = rsx::internals::surface_depth_format_to_gl(surface_depth_format);
 		const auto [width_, height_] = rsx::apply_resolution_scale<true>(static_cast<u16>(width), static_cast<u16>(height));
 
-		std::unique_ptr<gl::render_target> result(new gl::render_target(width_, height_,
-			static_cast<GLenum>(format.internal_format), rsx::classify_format(surface_depth_format)));
+		auto result = std::make_unique<gl::render_target>(width_, height_,
+			static_cast<GLenum>(format.internal_format), rsx::classify_format(surface_depth_format));
 
 		result->set_aa_mode(antialias);
 		result->set_surface_dimensions(static_cast<u16>(width), static_cast<u16>(height), static_cast<u32>(pitch));

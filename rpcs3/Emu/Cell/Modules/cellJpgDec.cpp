@@ -132,7 +132,7 @@ error_code cellJpgDecReadHeader(u32 mainHandle, u32 subHandle, vm::ptr<CellJpgDe
 	CellJpgDecInfo& current_info = subHandle_data->info;
 
 	// Write the header to buffer
-	std::unique_ptr<u8[]> buffer(new u8[fileSize]);
+	auto buffer = std::make_unique<u8[]>(fileSize);
 
 	switch (subHandle_data->src.srcSelect)
 	{
@@ -213,7 +213,7 @@ error_code cellJpgDecDecodeData(u32 mainHandle, u32 subHandle, vm::ptr<u8> data,
 	const CellJpgDecOutParam& current_outParam = subHandle_data->outParam;
 
 	//Copy the JPG file to a buffer
-	std::unique_ptr<u8[]> jpg(new u8[fileSize]);
+	auto jpg = std::make_unique<u8[]>(fileSize);
 
 	switch (subHandle_data->src.srcSelect)
 	{

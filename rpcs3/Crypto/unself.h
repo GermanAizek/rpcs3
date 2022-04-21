@@ -456,10 +456,10 @@ private:
 					const auto filesz = phdr[meta_shdr[i].program_idx].p_filesz;
 
 					// Create a pointer to a buffer for decompression.
-					std::unique_ptr<u8[]> decomp_buf(new u8[filesz]);
+					auto decomp_buf = std::make_unique<u8[]>(filesz);
 
 					// Create a buffer separate from data_buf to uncompress.
-					std::unique_ptr<u8[]> zlib_buf(new u8[data_buf_length]);
+					auto zlib_buf = std::make_unique<u8[]>(data_buf_length);
 					memcpy(zlib_buf.get(), data_buf.get(), data_buf_length);
 
 					uLongf decomp_buf_length = ::narrow<uLongf>(filesz);

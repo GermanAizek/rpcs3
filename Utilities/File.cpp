@@ -27,7 +27,7 @@ static std::unique_ptr<wchar_t[]> to_wchar(const std::string& source)
 	const int size = narrow<int>(buf_size);
 
 	// Buffer for max possible output length
-	std::unique_ptr<wchar_t[]> buffer(new wchar_t[buf_size + 8 + 32768]);
+	auto buffer = std::make_unique<wchar_t[]>(buf_size + 8 + 32768);
 
 	// Prepend wide path prefix (4 characters)
 	std::memcpy(buffer.get() + 32768, L"\\\\\?\\", 4 * sizeof(wchar_t));

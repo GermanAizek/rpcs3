@@ -203,8 +203,8 @@ error_code cellGifDecDecodeData(PMainHandle mainHandle, PSubHandle subHandle, vm
 	const u64 fileSize = subHandle->fileSize;
 	const CellGifDecOutParam& current_outParam = subHandle->outParam;
 
-	//Copy the GIF file to a buffer
-	std::unique_ptr<u8[]> gif(new u8[fileSize]);
+	// Copy the GIF file to a buffer
+	auto gif = std::make_unique<u8[]>(fileSize);
 
 	switch (subHandle->src.srcSelect)
 	{

@@ -331,7 +331,7 @@ int decrypt_data(const fs::file* in, const fs::file* out, EDAT_HEADER *edat, NPD
 {
 	const int total_blocks = static_cast<int>((edat->file_size + edat->block_size - 1) / edat->block_size);
 	u64 size_left = edat->file_size;
-	std::unique_ptr<u8[]> data(new u8[edat->block_size]);
+	auto data = std::make_unique<u8[]>(edat->block_size);
 
 	for (int i = 0; i < total_blocks; i++)
 	{
@@ -443,8 +443,8 @@ int check_data(unsigned char *key, EDAT_HEADER *edat, NPD_HEADER *npd, const fs:
 
 	long bytes_read = 0;
 	long bytes_to_read = metadata_size;
-	std::unique_ptr<u8[]> metadata(new u8[metadata_size]);
-	std::unique_ptr<u8[]> empty_metadata(new u8[metadata_size]);
+	auto metadata = std::make_unique<u8[]>(metadata_size);
+	auto empty_metadata = std::make_unique<u8[]>(metadata_size);
 
 	while (bytes_to_read > 0)
 	{
@@ -505,7 +505,7 @@ int check_data(unsigned char *key, EDAT_HEADER *edat, NPD_HEADER *npd, const fs:
 			if ((edat->flags & EDAT_FLAG_0x20) != 0) //Sony failed again, they used buffer from 0x100 with half size of real metadata.
 			{
 				int metadata_buf_size = block_num * 0x10;
-				std::unique_ptr<u8[]> metadata_buf(new u8[metadata_buf_size]);
+				auto metadata_buf = std::make_unique<u8[]>(metadata_buf_size);
 				f->seek(file_offset + metadata_offset);
 				f->read(metadata_buf.get(), metadata_buf_size);
 				sha1(metadata_buf.get(), metadata_buf_size, signature_hash);
@@ -594,9 +594,9 @@ bool validate_npd_hashes(const char* file_name, const u8* klicensee, NPD_HEADER 
 	const usz file_name_length = std::strlen(file_name);
 	const usz buf_len = 0x30 + file_name_length;
 
-	std::unique_ptr<u8[]> buf(new u8[buf_len]);
-	std::unique_ptr<u8[]> buf_lower(new u8[buf_len]);
-	std::unique_ptr<u8[]> buf_upper(new u8[buf_len]);
+	auto buf = std::make_unique<u8[]>(buf_len);
+	auto buf_lower = std::make_unique<u8[]>(buf_len);
+	auto buf_upper = std::make_unique<u8[]>(buf_len);
 
 	// Build the title buffer (content_id + file_name).
 	std::memcpy(buf.get(), npd->content_id, 0x30);
